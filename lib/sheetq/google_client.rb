@@ -16,7 +16,8 @@ module Sheetq
 
     def_delegators :@client,
     :get_spreadsheet_values,
-    :append_spreadsheet_value
+    :append_spreadsheet_value,
+    :update_spreadsheet_value
 
     def initialize(client_id, client_secret, token_store_path, user, logger = nil)
       @client_id = client_id
