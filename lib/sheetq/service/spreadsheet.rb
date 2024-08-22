@@ -25,6 +25,17 @@ module Sheetq
         )
       end
 
+      def update_row(sheet_name, resource, row_num)
+        value_range_object = Google::Apis::SheetsV4::ValueRange.new(values: [resource.to_a])
+        target = 'A' + row_num.to_s
+        response = client.update_spreadsheet_value(
+          spreadsheet_id,
+          "#{sheet_name}!#{target}",
+          value_range_object,
+          value_input_option: "RAW"
+        )
+      end
+
       def sheet(sheet_name, resource_class = nil)
         Sheet.new(self, sheet_name, resource_class)
       end
