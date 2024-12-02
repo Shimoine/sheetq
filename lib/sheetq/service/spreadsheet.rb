@@ -36,6 +36,28 @@ module Sheetq
         )
       end
 
+      def delete_row(sheet_name, row_num)
+        sheet_meta = client.get_spreadsheet(spreadsheet_id)
+        sheet = sheet_meta.sheets.find { |s| s.properties.title == sheet_name }
+        sheet_id = sheet.properties.sheet_id
+
+        delete_request = Google::Apis::SheetsV4::Request.new(
+          delete_dimension: Google::Apis::SheetsV4::DeleteDimensionRequest.new(
+            range: Google::Apis::SheetsV4::DimensionRange.new(
+              sheet_id: sheet_id,
+              dimension: "ROWS",
+              start_index: row_num - 1, # 0ベースに変換
+              end_index: row_num # 削除する行の次の行
+            )
+          )
+        )
+      
+        batch_update_request = Google::Apis::SheetsV4::BatchUpdateSpreadsheetRequest.new(
+          requests: [delete_request]
+        )
+        client.batch_update_spreadsheet(spreadsheet_id, batch_update_request)
+      end
+
       def sheet(sheet_name, resource_class = nil)
         Sheet.new(self, sheet_name, resource_class)
       end

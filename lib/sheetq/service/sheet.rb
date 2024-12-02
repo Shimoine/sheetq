@@ -22,6 +22,10 @@ module Sheetq
         spreadsheet.update_row(sheet_name, resource, row_num)
       end
 
+      def delete_row(row_num)
+        spreadsheet.delete_row(sheet_name, row_num)
+      end
+
       def fetch(range = nil)
         range = if range
                   sheet_name + "!" + range
