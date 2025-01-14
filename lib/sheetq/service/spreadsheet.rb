@@ -11,6 +11,18 @@ module Sheetq
         client.get_spreadsheet_values(spreadsheet_id, range)
       end
 
+      def get_row_num(sheet_name, word)
+        row_num = nil
+        values = client.get_spreadsheet_values(spreadsheet_id, sheet_name).values
+        values.each_with_index do |row, index|
+          if row.any? { |cell| cell == word}
+            row_num = index + 1
+            return row_num
+            break
+          end
+        end
+      end
+
       def append_row(sheet_name, resource)
         # https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
         # https://www.rubydoc.info/github/google/google-api-ruby-client/Google/Apis/SheetsV4/SheetsService#append_spreadsheet_value-instance_method
