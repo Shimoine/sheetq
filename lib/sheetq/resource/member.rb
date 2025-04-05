@@ -49,7 +49,7 @@ module Sheetq
           "Team: #{@team}\n" +
           "Mail: #{@mail}\n" +
           "Phone: #{@phone}\n" +
-          "Birthday: #{@birthday.strftime("%Y-%m-%d")}\n" +
+          "Birthday: #{@birthday&.strftime("%Y-%m-%d")}\n" +
           "Google: #{@google}\n" +
           "Twitter: #{@twitter}\n" +
           "GitHub: #{@github}\n" +
@@ -58,4 +58,4 @@ module Sheetq
       end
     end # class Member
   end # module Resource
-end # module Swimmy
+end # module Sheetq
