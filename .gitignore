@@ -66,3 +66,6 @@ Gemfile.lock
 # Added from /Users/nom/prj/github.com/nomlab/tools/bin/gem-new
 #
 /vendor
+
+# site-local
+attic/
