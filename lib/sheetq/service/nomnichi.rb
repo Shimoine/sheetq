@@ -4,7 +4,7 @@ module Sheetq
       def fetch(max_page = 10)
         require "json"
         require "net/http"
-        base_url = "http://www.swlab.cs.okayama-u.ac.jp/lab/nom/articles.json?page="
+        base_url = "https://gc.cs.okayama-u.ac.jp/lab/nom/articles.json?page="
         page, articles = 1, []
 
         loop do

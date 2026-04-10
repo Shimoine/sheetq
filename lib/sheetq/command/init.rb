@@ -10,7 +10,7 @@ module Sheetq
 
         config_dir = File.dirname(config_file)
 
-        if File.exists?(File.expand_path(config_file))
+        if File.exist?(File.expand_path(config_file))
           say_status "exist", "Ignore #{config_file}", :red
           return
         end
@@ -66,9 +66,9 @@ module Sheetq
 
       def expand_template(template_path, dest_path, config)
         require "erb"
-        template = ERB.new(File.open(template_path).read, nil, "-")
+        template = ERB.new(File.open(template_path).read, trim_mode: "-")
 
-        if File.exists?(dest_path)
+        if File.exist?(dest_path)
           say_status "exist", "Ignore #{dest_path}", :yellow
           return
         end
